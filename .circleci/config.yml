@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  zulip: ponylang/zulip@1
+
+jobs:
+  release-a-library:
+    docker:
+      - image: ponylang/shared-docker-ci-docker-builder:20190808
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push the `release-a-library` Docker image
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD"
+            bash release-a-library/build-and-push.bash
+      - zulip/status
+
+workflows:
+  version: 2.1
+
+  daily-image-updates:
+    triggers:
+      - schedule:
+          cron: "0 5 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - release-a-library:
+          context: org-global
