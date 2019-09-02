@@ -15,7 +15,8 @@ jobs:
           command: |
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD"
             bash release-a-library/build-and-push.bash
-      - zulip/status
+      - zulip/status:
+          fail_only: true
 
 workflows:
   version: 2.1
