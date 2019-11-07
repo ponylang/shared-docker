@@ -7,6 +7,7 @@ COPY --from=changelog-tool /usr/local/bin/changelog-tool /usr/local/bin/changelo
 
 RUN  apt-get update && \
   apt-get -y install \
+  bash \
   curl \
   git \
   jq
