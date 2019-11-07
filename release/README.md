@@ -1,9 +1,4 @@
-# Release
+# x86-64-unknown-linux-builder
 
-Standard environment needed to run "non-building" tasks for a release. Examples of these include:
-
-- Updating CHANGELOG.md for release
-- Posting release notes
-- Updating LWIP
-- Informing Zulip
-
+Standard environment needed to build a Pony application binary that can be
+run on any Linux distro.

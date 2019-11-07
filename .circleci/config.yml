@@ -18,6 +18,20 @@ jobs:
       - zulip/status:
           fail_only: true
 
+  x86-64-unknown-linux-builder:
+    docker:
+      - image: ponylang/shared-docker-ci-docker-builder:20190808
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push the `x86-64-unknown-linux-builder` Docker image
+          command: |
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD"
+            bash x86-64-unknown-linux-builder/build-and-push.bash
+      - zulip/status:
+          fail_only: true
+
 workflows:
   version: 2.1
 
@@ -30,4 +44,6 @@ workflows:
               only: master
     jobs:
       - release-a-library:
+          context: org-global
+      - x86-64-unknown-linux-builder:
           context: org-global
