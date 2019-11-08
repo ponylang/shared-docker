@@ -1,0 +1,32 @@
+name: Rebuild auto updating images
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+
+jobs:
+  release-a-library:
+    name: Update release-a-library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash release-a-library/build-and-push.bash
+
+  x86-64-unknown-linux-builder:
+    name: Update x86-64-unknown-linux-builder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder/build-and-push.bash
