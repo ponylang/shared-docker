@@ -1,4 +1,4 @@
-ARG FROM_TAG=release
+ARG FROM_TAG=release-alpine
 FROM ponylang/ponyc:${FROM_TAG}
 
 RUN apk update \
