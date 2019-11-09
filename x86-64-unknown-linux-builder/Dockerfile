@@ -7,4 +7,5 @@ RUN apk update \
   && apk add --update \
   py-pip \
   curl \
+  bash \
   && pip install cloudsmith-cli
