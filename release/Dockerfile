@@ -1,4 +1,3 @@
-ARG FROM_TAG=release
 FROM ponylang/changelog-tool:release AS changelog-tool
 
 FROM ubuntu:18.04
