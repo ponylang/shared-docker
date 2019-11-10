@@ -1,0 +1,19 @@
+name: Rebuild auto updating images that rely on other auto updating images
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  x86-64-unknown-linux-builder-with-ssl:
+    name: Update x86-64-unknown-linux-builder-with-ssl
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-ssl/build-and-push.bash
