@@ -10,6 +10,6 @@ set -o nounset
 TODAY=$(date +%Y%m%d)
 DOCKERFILE_DIR="$(dirname "$0")"
 
-docker build -t "ponylang/shared-docker-ci-shellcheck:${TODAY}" \
+docker build --pull -t "ponylang/shared-docker-ci-shellcheck:${TODAY}" \
   "${DOCKERFILE_DIR}"
 docker push "ponylang/shared-docker-ci-shellcheck:${TODAY}"
