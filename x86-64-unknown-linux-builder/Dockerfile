@@ -13,10 +13,5 @@ RUN apk update \
   make \
   build-base \
   libexecinfo-dev \
+  libexecinfo-static \
   && pip install cloudsmith-cli
-
-# temporary fix for broken stable in the base image
-RUN curl -O 'https://dl.cloudsmith.io/public/ponylang/nightlies/raw/versions/20191109/stable-x86-64-unknown-linux.tar.gz' \
- && gunzip stable-x86-64-unknown-linux.tar.gz \
- && tar xf stable-x86-64-unknown-linux.tar \
- && cp nightly-20191109/bin/stable /usr/local/bin/
