@@ -8,19 +8,18 @@ set -o nounset
 #
 
 DOCKERFILE_DIR="$(dirname "$0")"
+IMAGE="ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.x"
 
 # built from x86-64-unknown-linux-builder release tag
 FROM_TAG=release
 TAG_AS=release
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-ssl:"${TAG_AS}" \
-  "${DOCKERFILE_DIR}"
-docker push ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-ssl:"${TAG_AS}"
+  -t "${IMAGE}:${TAG_AS}" "${DOCKERFILE_DIR}"
+docker push "${IMAGE}:${TAG_AS}"
 
 # built from x86-64-unknown-linux-builder latest tag
 FROM_TAG=latest
 TAG_AS=latest
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-ssl:"${TAG_AS}" \
-  "${DOCKERFILE_DIR}"
-docker push ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-ssl:"${TAG_AS}"
+  -t "${IMAGE}:${TAG_AS}" "${DOCKERFILE_DIR}"
+docker push "${IMAGE}:${TAG_AS}"
