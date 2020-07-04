@@ -18,7 +18,7 @@ jobs:
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-libressl/build-and-push.bash
 
-  x86-64-unknown-linux-builder-with-openssl_1.1.x:
+  x86-64-unknown-linux-builder-with-openssl_1_1_x:
     name: Update x86-64-unknown-linux-builder-with-openssl_1.1.x
     runs-on: ubuntu-latest
     steps:
