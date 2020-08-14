@@ -31,6 +31,19 @@ jobs:
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-openssl_1.1.x/build-and-push.bash
 
+  x86-64-unknown-linux-builder-with-openssl_1_1_1g:
+    name: Update x86-64-unknown-linux-builder-with-openssl_1.1.1g
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-openssl_1.1.1g/build-and-push.bash
+
   x86-64-unknown-linux-builder-with-pcre:
     name: Update x86-64-unknown-linux-builder-with-pcre
     runs-on: ubuntu-latest
