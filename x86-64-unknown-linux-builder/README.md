@@ -6,4 +6,3 @@ Standard environment needed to run "non-building" tasks for a release. Examples 
 - Posting release notes
 - Updating LWIP
 - Informing Zulip
-
