@@ -1,10 +1,7 @@
 ARG FROM_TAG=release-alpine
 FROM ponylang/ponyc:${FROM_TAG}
 
-RUN apk update \
-  && apk upgrade \
-  && apk upgrade curl \
-  && apk add --update \
+RUN apk add --update --no-cache \
   alpine-sdk \
   binutils-gold \
   py-pip \
