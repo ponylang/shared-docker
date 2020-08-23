@@ -17,3 +17,59 @@ jobs:
           VALIDATE_DOCKERFILE: true
           VALIDATE_MD: true
           VALIDATE_YAML: true
+
+  validate-release-image-builds:
+    name: Validate release Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=release/Dockerfile ."
+
+  validate-release-a-library-image-builds:
+    name: Validate release-a-library Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=release-a-library/Dockerfile ."
+
+  validate-shellcheck-image-builds:
+    name: Validate shellcheck Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=shellcheck/Dockerfile ."
+
+  validate-x86-64-unknown-linux-builder-image-builds:
+    name: Validate x86-64-unknown-linux-builder Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder/Dockerfile ."
+
+  validate-x86-64-unknown-linux-builder-with-libressl-3_1_2-image-builds:
+    name: Validate x86-64-unknown-linux-builder-with-libressl-3.1.2 Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.1.2/Dockerfile ."
+
+  validate-x86-64-unknown-linux-builder-with-openssl_1_1_1g-image-builds:
+    name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1g Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1g/Dockerfile ."
+
+  validate-x86-64-unknown-linux-builder-with-pcre-image-builds:
+    name: Validate x86-64-unknown-linux-builder-with-pcre Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-pcre/Dockerfile ."
