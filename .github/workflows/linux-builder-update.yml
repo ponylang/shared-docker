@@ -59,3 +59,20 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-pcre/build-and-push.bash
+
+  send-linux-builders-updated-event:
+    needs: [x86-64-unknown-linux-builder, x86-64-unknown-linux-builder-with-libressl_3_1_2, x86-64-unknown-linux-builder-with-openssl_1_1_1g, x86-64-unknown-linux-builder-with-pcre]
+
+    name: Send nightly release event
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: ['ponylang/changelog-tool']
+    steps:
+      - name: Send
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PONYLANG_MAIN_API_TOKEN }}
+          repository: ${{ matrix.repo }}
+          event-type: shared-docker-linux-builders-updated
+          client-payload: '{}'
