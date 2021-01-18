@@ -34,14 +34,6 @@ jobs:
       - name: Docker build
         run: "docker build --pull --file=release-a-library/Dockerfile ."
 
-  validate-shellcheck-image-builds:
-    name: Validate shellcheck Docker image builds
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Docker build
-        run: "docker build --pull --file=shellcheck/Dockerfile ."
-
   validate-x86-64-unknown-linux-builder-image-builds:
     name: Validate x86-64-unknown-linux-builder Docker image builds
     runs-on: ubuntu-latest
