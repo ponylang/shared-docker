@@ -10,15 +10,17 @@ set -o nounset
 DOCKERFILE_DIR="$(dirname "$0")"
 
 # built from ponyc release tag
-FROM_TAG=release
+FROM_TAG=release-alpine
+TAG_AS=release
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t ponylang/shared-docker-ci-release-a-library:"${FROM_TAG}" \
+  -t ponylang/shared-docker-ci-release-a-library:"${TAG_AS}" \
   "${DOCKERFILE_DIR}"
-docker push ponylang/shared-docker-ci-release-a-library:"${FROM_TAG}"
+docker push ponylang/shared-docker-ci-release-a-library:"${TAG_AS}"
 
 # built from ponyc latest tag
-FROM_TAG=latest
+FROM_TAG=alpine
+TAG_AS=latest
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t ponylang/shared-docker-ci-release-a-library:"${FROM_TAG}" \
+  -t ponylang/shared-docker-ci-release-a-library:"${TAG_AS}" \
   "${DOCKERFILE_DIR}"
-docker push ponylang/shared-docker-ci-release-a-library:"${FROM_TAG}"
+docker push ponylang/shared-docker-ci-release-a-library:"${TAG_AS}"
