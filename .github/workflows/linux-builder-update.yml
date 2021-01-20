@@ -2,7 +2,7 @@ name: Rebuild linux builder images
 
 on:
   repository_dispatch:
-    types: [ponyc-nightly-released]
+    types: [ponyc-musl-nightly-released]
 
 jobs:
   x86-64-unknown-linux-builder:
