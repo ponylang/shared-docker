@@ -70,6 +70,7 @@ jobs:
         repo:
           - ponylang/appdirs
           - ponylang/changelog-tool
+          - ponylang/glob
           - ponylang/http
           - ponylang/http_server
           - ponylang/net_ssl
