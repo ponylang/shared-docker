@@ -72,6 +72,7 @@ jobs:
           - ponylang/changelog-tool
           - ponylang/http_server
           - ponylang/ponyup
+          - ponylang/rfc-tool
           - ponylang/semver
           - ponylang/valbytes
     steps:
