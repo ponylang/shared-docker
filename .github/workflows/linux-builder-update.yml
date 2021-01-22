@@ -72,6 +72,7 @@ jobs:
           - ponylang/changelog-tool
           - ponylang/http_server
           - ponylang/ponyup
+          - ponylang/valbytes
     steps:
       - name: Send
         uses: ponylang-main/repository-dispatch@ce5485de42c9b2622d2ed064be479e8ed65e76f4
