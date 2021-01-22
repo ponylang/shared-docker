@@ -71,6 +71,7 @@ jobs:
           - ponylang/appdirs
           - ponylang/changelog-tool
           - ponylang/http_server
+          - ponylang/peg
           - ponylang/ponyup
           - ponylang/reactive_streams
           - ponylang/regex
