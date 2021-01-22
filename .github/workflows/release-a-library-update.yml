@@ -2,7 +2,10 @@ name: Rebuild release-a-library image
 
 on:
   repository_dispatch:
-    types: [ponyc-musl-nightly-released, ponyc-musl-released, changelog-tool-released]
+    types:
+      - changelog-tool-released
+      - ponyc-musl-nightly-released
+      - ponyc-musl-released
 
 jobs:
   release-a-library:
