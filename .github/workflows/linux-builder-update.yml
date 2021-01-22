@@ -4,6 +4,7 @@ on:
   repository_dispatch:
     types:
       - ponyc-musl-nightly-released
+      - ponyc-musl-released
 
 jobs:
   x86-64-unknown-linux-builder:
