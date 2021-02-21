@@ -89,6 +89,7 @@ jobs:
           - ponylang/http_server
           - ponylang/net_ssl
           - ponylang/peg
+          - ponylang/ponydoc
           - ponylang/ponyup
           - ponylang/reactive_streams
           - ponylang/regex
