@@ -96,6 +96,7 @@ jobs:
           - ponylang/rfc-tool
           - ponylang/semver
           - ponylang/valbytes
+          - seantallen-org/lori
           - seantallen-org/msgpack
     steps:
       - name: Send
