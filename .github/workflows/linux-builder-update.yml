@@ -52,6 +52,22 @@ jobs:
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-libressl-3.2.5/build-and-push.bash
 
+   x86-64-unknown-linux-builder-with-libressl_3_2_5-with-pcre:
+    needs:
+      - x86-64-unknown-linux-builder-with-libressl_3_2_5
+
+    name: Update x86-64-unknown-linux-builder-with-libressl-3.2.5-with-pcre
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-libressl-3.2.5-with-pcre/build-and-push.bash
+
   x86-64-unknown-linux-builder-with-openssl_1_1_1g:
     needs:
       - x86-64-unknown-linux-builder
@@ -105,6 +121,8 @@ jobs:
       - x86-64-unknown-linux-builder
       - x86-64-unknown-linux-builder-with-libressl_3_1_2
       - x86-64-unknown-linux-builder-with-libressl_3_2_5
+      - x86-64-unknown-linux-builder-with-libressl_3_2_5-with-pcre
+
       - x86-64-unknown-linux-builder-with-openssl_1_1_1g
       - x86-64-unknown-linux-builder-with-openssl_1_1_1k
       - x86-64-unknown-linux-builder-with-pcre

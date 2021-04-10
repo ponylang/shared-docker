@@ -58,6 +58,14 @@ jobs:
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.2.5/Dockerfile ."
 
+  validate-x86-64-unknown-linux-builder-with-libressl-3_2_5-with-pcre-image-builds:
+    name: Validate x86-64-unknown-linux-builder-with-libressl-3.2.5-with-pcre Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.2.5-with-pcre/Dockerfile ."
+
   validate-x86-64-unknown-linux-builder-with-openssl_1_1_1g-image-builds:
     name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1g Docker image builds
     runs-on: ubuntu-latest
