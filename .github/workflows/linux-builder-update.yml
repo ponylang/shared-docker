@@ -114,6 +114,7 @@ jobs:
     strategy:
       matrix:
         repo:
+          - ergl/pony-protobuf
           - ponylang/appdirs
           - ponylang/changelog-tool
           - ponylang/corral
