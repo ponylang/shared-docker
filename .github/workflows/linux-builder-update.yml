@@ -131,6 +131,7 @@ jobs:
           - ponylang/changelog-tool
           - ponylang/corral
           - ponylang/crypto
+          - ponylang/github_rest_api
           - ponylang/glob
           - ponylang/http
           - ponylang/http_server
@@ -142,6 +143,7 @@ jobs:
           - ponylang/regex
           - ponylang/rfc-tool
           - ponylang/semver
+          - ponylang/templates
           - ponylang/valbytes
           - seantallen-org/lori
           - seantallen-org/msgpack
