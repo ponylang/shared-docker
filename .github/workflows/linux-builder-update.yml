@@ -115,7 +115,6 @@ jobs:
   send-linux-builders-updated-event:
     needs:
       - x86-64-unknown-linux-builder
-      - x86-64-unknown-linux-builder-with-libressl_3_1_2
       - x86-64-unknown-linux-builder-with-libressl_3_2_5
       - x86-64-unknown-linux-builder-with-openssl_1_1_1g
       - x86-64-unknown-linux-builder-with-openssl_1_1_1k
