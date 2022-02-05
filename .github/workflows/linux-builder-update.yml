@@ -185,6 +185,7 @@ jobs:
           - ponylang/changelog-tool
           - ponylang/corral
           - ponylang/crypto
+          - ponylang/fork_join
           - ponylang/github_rest_api
           - ponylang/glob
           - ponylang/http
