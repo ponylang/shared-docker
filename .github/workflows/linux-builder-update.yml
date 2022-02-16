@@ -193,6 +193,7 @@ jobs:
           - ponylang/net_ssl
           - ponylang/peg
           - ponylang/pony-sync-helper
+          - ponylang/ponycheck
           - ponylang/ponydoc
           - ponylang/ponyup
           - ponylang/reactive_streams
