@@ -190,6 +190,7 @@ jobs:
           - ponylang/glob
           - ponylang/http
           - ponylang/http_server
+          - ponylang/logger
           - ponylang/net_ssl
           - ponylang/peg
           - ponylang/pony-sync-helper
