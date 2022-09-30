@@ -252,6 +252,7 @@ jobs:
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
           - ponylang/ponyup
+          - ponylang/postgres
           - ponylang/reactive_streams
           - ponylang/regex
           - ponylang/rfc-tool
