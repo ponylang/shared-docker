@@ -31,60 +31,6 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
-  x86-64-unknown-linux-builder-with-libressl_3_2_5:
-    needs:
-      - x86-64-unknown-linux-builder
-
-    name: Update x86-64-unknown-linux-builder-with-libressl-3.2.5
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker login
-        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-        env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      - name: Build and push
-        run: bash x86-64-unknown-linux-builder-with-libressl-3.2.5/build-and-push.bash
-      - name: Send alert on failure
-        if: ${{ failure() }}
-        uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
-        with:
-          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
-          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
-          organization-url: 'https://ponylang.zulipchat.com/'
-          to: notifications
-          type: stream
-          topic: ${{ github.repository }} scheduled job failure
-          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
-
-  x86-64-unknown-linux-builder-with-libressl_3_4_1:
-    needs:
-      - x86-64-unknown-linux-builder
-
-    name: Update x86-64-unknown-linux-builder-with-libressl-3.4.1
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker login
-        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-        env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      - name: Build and push
-        run: bash x86-64-unknown-linux-builder-with-libressl-3.4.1/build-and-push.bash
-      - name: Send alert on failure
-        if: ${{ failure() }}
-        uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
-        with:
-          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
-          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
-          organization-url: 'https://ponylang.zulipchat.com/'
-          to: notifications
-          type: stream
-          topic: ${{ github.repository }} scheduled job failure
-          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
-
   x86-64-unknown-linux-builder-with-libressl_3_5_2:
     needs:
       - x86-64-unknown-linux-builder
@@ -100,6 +46,33 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-libressl-3.5.2/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  x86-64-unknown-linux-builder-with-libressl_3_5_3:
+    needs:
+      - x86-64-unknown-linux-builder
+
+   name: Update x86-64-unknown-linux-builder-with-libressl-3.5.3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-libressl-3.5.3/build-and-push.bash
       - name: Send alert on failure
         if: ${{ failure() }}
         uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
@@ -223,9 +196,8 @@ jobs:
   send-linux-builders-updated-event:
     needs:
       - x86-64-unknown-linux-builder
-      - x86-64-unknown-linux-builder-with-libressl_3_2_5
-      - x86-64-unknown-linux-builder-with-libressl_3_4_1
       - x86-64-unknown-linux-builder-with-libressl_3_5_2
+      - x86-64-unknown-linux-builder-with-libressl_3_5_3
       - x86-64-unknown-linux-builder-with-openssl_1_1_1k
       - x86-64-unknown-linux-builder-with-openssl_1_1_1l
       - x86-64-unknown-linux-builder-with-openssl_1_1_1n

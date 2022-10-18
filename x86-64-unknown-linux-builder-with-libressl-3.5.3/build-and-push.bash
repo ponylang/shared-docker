@@ -8,7 +8,7 @@ set -o nounset
 #
 
 DOCKERFILE_DIR="$(dirname "$0")"
-IMAGE="ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.4.1"
+IMAGE="ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.5.3"
 
 # built from x86-64-unknown-linux-builder release tag
 FROM_TAG=release
