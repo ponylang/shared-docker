@@ -7,10 +7,10 @@ RUN apk add --update --no-cache \
   perl
 
 RUN cd /tmp && \
-  wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1k.tar.gz && \
-  tar xf OpenSSL_1_1_1k.tar.gz && \
-  cd openssl-OpenSSL_1_1_1k && \
+  wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1q.tar.gz && \
+  tar xf OpenSSL_1_1_1q.tar.gz && \
+  cd openssl-OpenSSL_1_1_1q && \
   ./Configure --api=1.1.0 no-shared linux-x86_64 enable-rc5 enable-md2 && \
   make install_sw && \
   cd /tmp && \
-  rm -rf openssl-OpenSSL_1_1_1k
+  rm -rf openssl-OpenSSL_1_1_1q
