@@ -58,22 +58,6 @@ jobs:
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.5.3/Dockerfile ."
 
-  validate-x86-64-unknown-linux-builder-with-openssl_1_1_1k-image-builds:
-    name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1k Docker image builds
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker build
-        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1k/Dockerfile ."
-
-  validate-x86-64-unknown-linux-builder-with-openssl_1_1_1l-image-builds:
-    name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1l Docker image builds
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker build
-        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1l/Dockerfile ."
-
   validate-x86-64-unknown-linux-builder-with-openssl_1_1_1n-image-builds:
     name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1n Docker image builds
     runs-on: ubuntu-latest
@@ -81,6 +65,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1n/Dockerfile ."
+
+  validate-x86-64-unknown-linux-builder-with-openssl_1_1_1q-image-builds:
+    name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1q Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build
+        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1q/Dockerfile ."
 
   validate-x86-64-unknown-linux-builder-with-pcre-image-builds:
     name: Validate x86-64-unknown-linux-builder-with-pcre Docker image builds
