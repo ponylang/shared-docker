@@ -1,4 +1,4 @@
-name: Rebuild linux builder image
+name: Rebuild linux builder images
 
 on:
   repository_dispatch:
