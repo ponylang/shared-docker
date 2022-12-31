@@ -62,7 +62,7 @@ jobs:
     needs:
       - x86-64-unknown-linux-builder
 
-   name: Update x86-64-unknown-linux-builder-with-libressl-3.5.3
+    name: Update x86-64-unknown-linux-builder-with-libressl-3.5.3
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
