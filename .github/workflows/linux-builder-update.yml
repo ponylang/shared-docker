@@ -1,1 +1,7 @@
 name: Rebuild linux builder image
+
+on:
+  repository_dispatch:
+    types:
+      - ponyc-musl-nightly-released
+      - ponyc-musl-released
