@@ -7,7 +7,6 @@ on:
       - ponyc-musl-nightly-released
       - ponyc-musl-released
 
-
 jobs:
   release-a-library:
     name: Update release-a-library
