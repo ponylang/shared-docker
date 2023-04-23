@@ -116,7 +116,7 @@ jobs:
     needs:
       - x86-64-unknown-linux-builder
 
-    name: Update x86-64-unknown-linux-builder-with-openssl_1.1.q
+    name: Update x86-64-unknown-linux-builder-with-openssl_1.1.1q
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -127,6 +127,33 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       - name: Build and push
         run: bash x86-64-unknown-linux-builder-with-openssl_1.1.1q/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  x86-64-unknown-linux-builder-with-openssl_1_1_1t:
+    needs:
+      - x86-64-unknown-linux-builder
+
+    name: Update x86-64-unknown-linux-builder-with-openssl_1.1.1t
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        run: "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-openssl_1.1.1t/build-and-push.bash
       - name: Send alert on failure
         if: ${{ failure() }}
         uses: zulip/github-actions-zulip@35d7ad8e98444f894dcfe1d4e17332581d28ebeb
@@ -227,6 +254,7 @@ jobs:
       - x86-64-unknown-linux-builder-with-libressl_3_5_3
       - x86-64-unknown-linux-builder-with-openssl_1_1_1n
       - x86-64-unknown-linux-builder-with-openssl_1_1_1q
+      - x86-64-unknown-linux-builder-with-openssl_1_1_1t
       - x86-64-unknown-linux-builder-with-openssl_3_0_7
       - x86-64-unknown-linux-builder-with-openssl_3_1_0
       - x86-64-unknown-linux-builder-with-pcre
