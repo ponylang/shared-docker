@@ -234,6 +234,7 @@ jobs:
     name: Send nightly release event
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         repo:
           - ergl/pony-protobuf
