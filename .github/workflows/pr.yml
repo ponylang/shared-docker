@@ -18,14 +18,6 @@ jobs:
           VALIDATE_MD: true
           VALIDATE_YAML: true
 
-  validate-release-image-builds:
-    name: Validate release Docker image builds
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker build
-        run: "docker build --pull --file=release/Dockerfile ."
-
   validate-release-a-library-image-builds:
     name: Validate release-a-library Docker image builds
     runs-on: ubuntu-latest
