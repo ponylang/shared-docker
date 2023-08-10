@@ -2,7 +2,22 @@ name: PR
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  actionlint:
+    name: Lint GitHub Action Workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check workflow files
+        uses: docker://ponylang/shared-docker-ci-actionlint:20230810
+        with:
+          args: -color
+
   superlinter:
     name: Lint bash, docker, markdown, and yaml
     runs-on: ubuntu-latest
@@ -17,6 +32,14 @@ jobs:
           VALIDATE_DOCKERFILE: true
           VALIDATE_MD: true
           VALIDATE_YAML: true
+
+  validate-actionlint-image-builds:
+    name: Validate release Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build
+        run: "docker build --pull --file=actionlint/Dockerfile ."
 
   validate-release-a-library-image-builds:
     name: Validate release-a-library Docker image builds
