@@ -12,3 +12,5 @@ RUN apk add --update --no-cache \
   libexecinfo-dev \
   libexecinfo-static \
   && pip install cloudsmith-cli
+
+RUN git config --global --add safe.directory '*'

@@ -11,3 +11,5 @@ RUN apk add --update --no-cache \
   git \
   jq \
   make
+
+RUN git config --global --add safe.directory '*'
