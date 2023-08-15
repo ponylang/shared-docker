@@ -22,7 +22,7 @@ jobs:
     name: Lint bash, docker, markdown, and yaml
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Lint codebase
         uses: docker://github/super-linter:v3.8.3
         env:
@@ -37,7 +37,7 @@ jobs:
     name: Validate release Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=actionlint/Dockerfile ."
 
@@ -45,7 +45,7 @@ jobs:
     name: Validate release-a-library Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=release-a-library/Dockerfile ."
 
@@ -53,7 +53,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder/Dockerfile ."
 
@@ -61,7 +61,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-libressl-3.5.3 Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.5.3/Dockerfile ."
 
@@ -69,7 +69,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-libressl-3.7.2 Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-libressl-3.7.2/Dockerfile ."
 
@@ -77,7 +77,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1q Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1q/Dockerfile ."
 
@@ -85,7 +85,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-openssl_1.1.1t Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1t/Dockerfile ."
 
@@ -93,7 +93,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-openssl_3.0.7 Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_3.0.7/Dockerfile ."
 
@@ -101,7 +101,7 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-openssl_3.1.0 Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_3.1.0/Dockerfile ."
 
@@ -109,6 +109,6 @@ jobs:
     name: Validate x86-64-unknown-linux-builder-with-pcre Docker image builds
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-pcre/Dockerfile ."
