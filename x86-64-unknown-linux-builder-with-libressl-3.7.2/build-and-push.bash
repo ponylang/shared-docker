@@ -30,7 +30,7 @@ docker push "${NAME}:${TAG_AS}"
 
 ## GitHub Container Registry
 
-NAME="ghrc.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.2"
+NAME="ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.2"
 
 # built from x86-64-unknown-linux-builder release tag
 FROM_TAG=release
