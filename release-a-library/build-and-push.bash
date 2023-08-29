@@ -19,7 +19,7 @@ TAG_AS=release
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" \
   "${DOCKERFILE_DIR}"
-docker push "${NAME}:${TAG_AS}"
+#docker push "${NAME}:${TAG_AS}"
 
 # built from ponyc latest tag
 FROM_TAG=alpine
@@ -38,7 +38,7 @@ TAG_AS=release
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" \
   "${DOCKERFILE_DIR}"
-docker push "${NAME}:${TAG_AS}"
+#docker push "${NAME}:${TAG_AS}"
 
 # built from ponyc latest tag
 FROM_TAG=alpine
