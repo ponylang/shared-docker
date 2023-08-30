@@ -1,5 +1,5 @@
 ARG FROM_TAG=release-alpine
-FROM ponylang/changelog-tool:release AS changelog-tool
+FROM ghcr.io/ponylang/changelog-tool:release AS changelog-tool
 
 FROM ponylang/ponyc:${FROM_TAG}
 
