@@ -1,5 +1,5 @@
 ARG FROM_TAG=release-alpine
-FROM ponylang/ponyc:${FROM_TAG}
+FROM ghcr.io/ponylang/ponyc:${FROM_TAG}
 
 RUN apk add --update --no-cache \
   alpine-sdk \
