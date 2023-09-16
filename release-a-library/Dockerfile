@@ -1,7 +1,7 @@
 ARG FROM_TAG=release-alpine
 FROM ghcr.io/ponylang/changelog-tool:release AS changelog-tool
 
-FROM ponylang/ponyc:${FROM_TAG}
+FROM ghcr.io/ponylang/ponyc:${FROM_TAG}
 
 COPY --from=changelog-tool /usr/local/bin/changelog-tool /usr/local/bin/changelog-tool
 
