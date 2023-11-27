@@ -30,6 +30,14 @@ jobs:
       - name: Docker build
         run: "docker build --pull --file=actionlint/Dockerfile ."
 
+  validate-emacs-mode-release-image-builds:
+    name: Validate release Docker image builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker build
+        run: "docker build --pull --file=emacs-mode-release/Dockerfile ."
+
   validate-release-a-library-image-builds:
     name: Validate release-a-library Docker image builds
     runs-on: ubuntu-latest
