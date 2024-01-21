@@ -7,7 +7,7 @@ RUN apk add --update --no-cache \
   perl
 
 RUN cd /tmp && \
-  wget https://www.openssl.org/source/openssl-3.1.0.tar.gz && \
+  wget https://www.openssl.org/source/old/3.1/openssl-3.1.0.tar.gz && \
   tar xf openssl-3.1.0.tar.gz && \
   cd openssl-3.1.0 && \
   ./Configure --api=3.0.0 no-shared linux-x86_64 enable-rc5 enable-md2 && \
