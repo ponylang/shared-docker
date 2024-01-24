@@ -307,7 +307,7 @@ jobs:
           - ponylang/semver
           - ponylang/templates
           - ponylang/valbytes
-          - seantallen-org/lori
+          - ponylang/lori
           - seantallen-org/msgpack
     steps:
       - name: Send
