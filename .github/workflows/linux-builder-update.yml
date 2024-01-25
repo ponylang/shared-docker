@@ -295,6 +295,7 @@ jobs:
           - ponylang/http_server
           - ponylang/json
           - ponylang/logger
+          - ponylang/lori
           - ponylang/net_ssl
           - ponylang/peg
           - ponylang/pony-sync-helper
@@ -307,7 +308,6 @@ jobs:
           - ponylang/semver
           - ponylang/templates
           - ponylang/valbytes
-          - ponylang/lori
           - seantallen-org/msgpack
     steps:
       - name: Send
