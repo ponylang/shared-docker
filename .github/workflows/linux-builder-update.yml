@@ -91,6 +91,35 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
+  x86-64-unknown-linux-builder-with-libressl_3_9_1:
+    needs:
+      - x86-64-unknown-linux-builder
+
+    name: Update x86-64-unknown-linux-builder-with-libressl-3.9.1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        run: bash x86-64-unknown-linux-builder-with-libressl-3.9.1/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@08b6fbd07f5834e5b930a85bc7740e9fd44ab2e7
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
   x86-64-unknown-linux-builder-with-openssl_1_1_1t:
     needs:
       - x86-64-unknown-linux-builder
@@ -299,6 +328,7 @@ jobs:
       - x86-64-unknown-linux-builder
       - x86-64-unknown-linux-builder-with-libressl_3_7_2
       - x86-64-unknown-linux-builder-with-libressl_3_7_3
+      - x86-64-unknown-linux-builder-with-libressl_3_9_1
       - x86-64-unknown-linux-builder-with-openssl_1_1_1t
       - x86-64-unknown-linux-builder-with-openssl_1_1_1w
       - x86-64-unknown-linux-builder-with-openssl_3_1_0
@@ -374,6 +404,7 @@ jobs:
           - shared-docker-ci-x86-64-unknown-linux-builder
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.2
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.3
+          - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.1
           - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1t
           - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1w
           - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.1.0
