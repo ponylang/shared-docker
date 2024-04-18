@@ -12,7 +12,7 @@ DOCKERFILE_DIR="$(dirname "$0")"
 
 ## GitHub Container Registry
 
-NAME="ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.7.3"
+NAME="ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.1"
 
 # built from x86-64-unknown-linux-builder release tag
 FROM_TAG=release
