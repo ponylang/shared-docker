@@ -1,4 +1,4 @@
-FROM alpine:3.18 AS builder
+FROM alpine:3.20 AS builder
 
 RUN apk add --update --no-cache \
   bash \
