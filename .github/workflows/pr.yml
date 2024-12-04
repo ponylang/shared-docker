@@ -23,7 +23,7 @@ jobs:
           VALIDATE_YAML: true
 
   validate-actionlint-image-builds:
-    name: Validate release Docker image builds
+    name: Validate actionlint Docker image builds
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
@@ -31,7 +31,7 @@ jobs:
         run: "docker build --pull --file=actionlint/Dockerfile ."
 
   validate-emacs-mode-release-image-builds:
-    name: Validate release Docker image builds
+    name: Validate emacs-mode release Docker image builds
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
