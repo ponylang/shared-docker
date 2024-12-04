@@ -9,6 +9,6 @@ RUN apk add --update --no-cache \
   bash \
   make \
   build-base \
-  && pip install cloudsmith-cli
+  && pip install --break-system-packages cloudsmith-cli
 
 RUN git config --global --add safe.directory '*'
