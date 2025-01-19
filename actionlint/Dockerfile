@@ -6,8 +6,8 @@ RUN apk add --update --no-cache \
   shellcheck
 
 RUN cd /tmp && \
-  wget https://github.com/rhysd/actionlint/releases/download/v1.7.4/actionlint_1.7.4_linux_386.tar.gz && \
-  tar xf actionlint_1.7.4_linux_386.tar.gz && \
+  wget https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_386.tar.gz && \
+  tar xf actionlint_1.7.7_linux_386.tar.gz && \
   cp actionlint /usr/bin/ && \
   chmod a+x /usr/bin/actionlint
 
