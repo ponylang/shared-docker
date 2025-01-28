@@ -248,6 +248,7 @@ jobs:
           - ponylang/semver
           - ponylang/templates
           - ponylang/valbytes
+          - seantallen-org/credo
           - seantallen-org/msgpack
     steps:
       - name: Send
