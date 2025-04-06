@@ -21,6 +21,7 @@ jobs:
           VALIDATE_DOCKERFILE: true
           VALIDATE_MD: true
           VALIDATE_YAML: true
+          VALIDATE_R: false
 
   validate-actionlint-image-builds:
     name: Validate actionlint Docker image builds
