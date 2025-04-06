@@ -7,6 +7,11 @@ on:
       - ponyc-musl-nightly-released
       - ponyc-musl-released
 
+permissions:
+  contents: read
+  id-token: write
+  packages: write
+
 jobs:
   release-a-library:
     name: Update release-a-library
