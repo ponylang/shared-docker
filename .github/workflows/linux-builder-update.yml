@@ -289,7 +289,6 @@ jobs:
       matrix:
         image:
           - shared-docker-ci-x86-64-unknown-linux-builder
-          - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.1
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.2
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-4.0.0
           - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1w
