@@ -5,6 +5,7 @@ on:
     types:
       - ponyc-musl-nightly-released
       - ponyc-musl-released
+  workflow_dispatch:
 
 permissions:
   contents: read
