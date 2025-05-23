@@ -1,8 +1,3 @@
-# Release
+# x86-64-unknown-linux-builder
 
-Standard environment needed to run "non-building" tasks for a release. Examples of these include:
-
-- Updating CHANGELOG.md for release
-- Posting release notes
-- Updating LWIP
-- Informing Zulip
+A builder for x86-64 Linux. Rebuilt daily.
