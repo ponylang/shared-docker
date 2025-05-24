@@ -17,15 +17,15 @@ docker buildx create --use --name "${BUILDER}"
 # built from ponyc release tag
 # FROM_TAG=release-alpine-arm64
 # TAG_AS=release
-# docker buildx build --platform linux/arm64 --pull \
+# docker buildx build --platform linux/arm64 --pull --push \
 #   --build-arg FROM_TAG="${FROM_TAG}" -t "${NAME}:${TAG_AS}" \
-#   --output "type=image,push=true" "${DOCKERFILE_DIR}"
+#   "${DOCKERFILE_DIR}"
 
 # built from ponyc latest tag
 FROM_TAG=alpine-arm64
 TAG_AS=latest
-docker buildx build --platform linux/arm64 --pull \
+docker buildx build --platform linux/arm64 --pull --push \
   --build-arg FROM_TAG="${FROM_TAG}" -t "${NAME}:${TAG_AS}" \
-  --output "type=image,push=true" "${DOCKERFILE_DIR}"
+  "${DOCKERFILE_DIR}"
 
-docker buildx stop "${BUILDER}"
+docker buildx rm "${BUILDER}"
