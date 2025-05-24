@@ -3,6 +3,7 @@ name: Rebuild linux builder images
 on:
   repository_dispatch:
     types:
+      - ponyc-arm64-musl-nightly-released
       - ponyc-musl-nightly-released
       - ponyc-musl-released
   workflow_dispatch:
@@ -14,6 +15,7 @@ permissions:
 
 jobs:
   arm64-unknown-linux-builder:
+    if: github.event.action == 'ponyc-arm64-musl-nightly-released'
     name: Update arm64-unknown-linux-builder
     runs-on: ubuntu-24.04-arm
     steps:
@@ -44,6 +46,7 @@ jobs:
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
   x86-64-unknown-linux-builder:
+    if: github.event.action == 'ponyc-musl-nightly-released' || github.event.action == 'ponyc-musl-released'
     name: Update x86-64-unknown-linux-builder
     runs-on: ubuntu-latest
     steps:
