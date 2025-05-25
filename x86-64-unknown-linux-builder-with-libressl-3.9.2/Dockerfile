@@ -1,6 +1,8 @@
 ARG FROM_TAG=release
 FROM ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder:${FROM_TAG}
 
+LABEL org.opencontainers.image.source="https://github.com/ponylang/shared-docker"
+
 RUN cd /tmp && \
   wget https://cdn.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.9.2.tar.gz && \
   tar xf libressl-3.9.2.tar.gz && \
