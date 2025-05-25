@@ -1,6 +1,8 @@
 ARG FROM_TAG=release-alpine
 FROM ghcr.io/ponylang/ponyc:${FROM_TAG}
 
+LABEL org.opencontainers.image.source="https://github.com/ponylang/shared-docker"
+
 RUN apk add --update --no-cache \
   alpine-sdk \
   binutils-gold \
