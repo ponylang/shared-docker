@@ -24,8 +24,8 @@ docker buildx create --use --name "${BUILDER}"
 # built from ponyc latest tag
 FROM_TAG=alpine-arm64
 TAG_AS=latest
-docker buildx build --platform linux/arm64 --pull --push \
-  --build-arg FROM_TAG="${FROM_TAG}" -t "${NAME}:${TAG_AS}" \
+docker buildx build  --provenance false --sbom false --platform linux/arm64 \
+  --pull --push --build-arg FROM_TAG="${FROM_TAG}" -t "${NAME}:${TAG_AS}" \
   "${DOCKERFILE_DIR}"
 
 docker buildx rm "${BUILDER}"
