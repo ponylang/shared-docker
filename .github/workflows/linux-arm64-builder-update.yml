@@ -42,10 +42,75 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
+  arm64-unknown-linux-builder-with-libressl_4_0_0:
+    needs:
+      - arm64-unknown-linux-builder
+
+    name: Update arm64-unknown-linux-builder-with-libressl-4.0.0
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      - name: Set up Docker Buildx
+        # v3.10.0
+        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        run: bash arm64-unknown-linux-builder-with-libressl-4.0.0/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  send-linux-builders-updated-event:
+    needs:
+      - arm64-unknown-linux-builder
+      - arm64-unknown-linux-builder-with-libressl_4_0_0
+
+    name: Send 'shared-docker-linux-builders-updated' event
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo:
+          - ponylang/ponyup
+    steps:
+      - name: Send
+        # v2.1.1
+        uses: peter-evans/repository-dispatch@8324ecf35877f9b02961dd5aaf43ed7be7db9373
+        with:
+          token: ${{ secrets.PONYLANG_MAIN_API_TOKEN }}
+          repository: ${{ matrix.repo }}
+          event-type: shared-docker-arm64-linux-builders-updated
+          client-payload: '{}'
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
   prune-untagged-builder-images:
     needs:
-      - arm64-unknown-linux-builder
+      - send-linux-builders-updated-event
 
     name: Prune untagged builder images
     runs-on: ubuntu-latest
@@ -55,6 +120,7 @@ jobs:
       matrix:
         image:
           - shared-docker-ci-arm64-unknown-linux-builder
+          - shared-docker-ci-arm64-unknown-linux-builder-with-libressl-4.0.0
 
     steps:
       - name: Prune
