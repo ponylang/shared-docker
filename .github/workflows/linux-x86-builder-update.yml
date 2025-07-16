@@ -233,7 +233,6 @@ jobs:
           - ponylang/appdirs
           - ponylang/changelog-tool
           - ponylang/corral
-          - ponylang/crypto
           - ponylang/fork_join
           - ponylang/github_rest_api
           - ponylang/glob
@@ -242,7 +241,6 @@ jobs:
           - ponylang/json
           - ponylang/logger
           - ponylang/lori
-          - ponylang/net_ssl
           - ponylang/peg
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
@@ -252,6 +250,7 @@ jobs:
           - ponylang/regex
           - ponylang/rfc-tool
           - ponylang/semver
+          - ponylang/ssl
           - ponylang/templates
           - ponylang/valbytes
           - seantallen-org/credo
