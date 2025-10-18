@@ -2,6 +2,7 @@ ARG FROM_TAG=release
 FROM ghcr.io/ponylang/ponyc:${FROM_TAG}
 
 LABEL org.opencontainers.image.source="https://github.com/ponylang/shared-docker"
+LABEL org.opencontainers.image.description="A basic pony building environment. Includes tools from the ponyc image plus some additional tools."
 
 RUN apk add --update --no-cache \
   alpine-sdk \
