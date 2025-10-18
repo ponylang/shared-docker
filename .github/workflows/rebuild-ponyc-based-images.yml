@@ -52,7 +52,32 @@ jobs:
       fail-fast: false
       matrix:
         repo:
+          - ergl/pony-protobuf
+          - ponylang/appdirs
+          - ponylang/changelog-tool
+          - ponylang/corral
+          - ponylang/fork_join
+          - ponylang/github_rest_api
+          - ponylang/glob
+          - ponylang/http
+          - ponylang/http_server
+          - ponylang/json
+          - ponylang/logger
+          - ponylang/lori
+          - ponylang/peg
+          - ponylang/pony-sync-helper
+          - ponylang/ponydoc
           - ponylang/ponyup
+          - ponylang/postgres
+          - ponylang/reactive_streams
+          - ponylang/regex
+          - ponylang/rfc-tool
+          - ponylang/semver
+          - ponylang/ssl
+          - ponylang/templates
+          - ponylang/valbytes
+          - seantallen-org/credo
+          - seantallen-org/msgpack
     steps:
       - name: Send
         # v2.1.1
