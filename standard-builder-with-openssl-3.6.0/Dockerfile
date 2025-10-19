@@ -13,8 +13,7 @@ RUN cd /tmp && \
   tar xf openssl-3.6.0.tar.gz && \
   cd openssl-3.6.0 && \
   ./Configure --api=3.0.0 no-shared enable-rc5 enable-md2 && \
-  make && \
-  make install && \
+  make install_sw && \
   cd /tmp && \
   rm -rf openssl-3.6.0
 
