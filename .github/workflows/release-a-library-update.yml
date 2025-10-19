@@ -4,8 +4,8 @@ on:
   repository_dispatch:
     types:
       - changelog-tool-released
-      - ponyc-musl-nightly-released
-      - ponyc-musl-released
+      - ponyc-nightly-image-pushed
+      - ponyc-release-image-pushed
 
 permissions:
   contents: read
