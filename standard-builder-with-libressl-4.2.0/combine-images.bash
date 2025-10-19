@@ -1,5 +1,7 @@
 #!/bin/bash
-set -euo pipefail
+
+set -o errexit
+set -o nounset
 
 NAME="ghcr.io/ponylang/shared-docker-ci-standard-builder-with-libressl-4.2.0"
 
@@ -25,14 +27,22 @@ merge_images() {
 
   if [ ${#sources[@]} -eq 0 ]; then
     echo "No images found for merging, skipping."
-    return 0
+    return
   fi
 
-  echo "Combining images into manifest tag: ${NAME}:${TAG}"
-  docker manifest create "${NAME}:${TAG}" "${sources[@]}"
+  echo "Creating or updating manifest tag: ${NAME}:${TAG}"
+
+  # Attempt to inspect existing manifest
+  if docker manifest inspect "${NAME}:${TAG}" >/dev/null 2>&1; then
+    echo "Existing manifest found, updating it."
+    docker manifest create --amend "${NAME}:${TAG}" "${sources[@]}"
+  else
+    echo "No existing manifest found, creating new one."
+    docker manifest create "${NAME}:${TAG}" "${sources[@]}"
+  fi
   docker manifest push "${NAME}:${TAG}"
 
-  echo "Manifest created successfully."
+  echo "Manifest created or updated successfully."
 }
 
 merge_images "nightly"
