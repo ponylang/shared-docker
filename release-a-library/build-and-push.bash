@@ -14,17 +14,13 @@ DOCKERFILE_DIR="$(dirname "$0")"
 
 # built from ponyc release tag
 NAME="ghcr.io/ponylang/shared-docker-ci-release-a-library"
-FROM_TAG=release-alpine
-TAG_AS=release
-docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t "${NAME}:${TAG_AS}" \
+docker build --pull --build-arg FROM_TAG=release" \
+  -t "${NAME}:$release" \
   "${DOCKERFILE_DIR}"
-docker push "${NAME}:${TAG_AS}"
+docker push "${NAME}:release"
 
-# built from ponyc latest tag
-FROM_TAG=alpine
-TAG_AS=latest
-docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
-  -t "${NAME}:${TAG_AS}" \
+# built from ponyc nightly tag
+docker build --pull --build-arg FROM_TAG="nightly" \
+  -t "${NAME}:nightly" \
   "${DOCKERFILE_DIR}"
-docker push "${NAME}:${TAG_AS}"
+docker push "${NAME}:nightly"
