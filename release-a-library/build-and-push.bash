@@ -14,8 +14,8 @@ DOCKERFILE_DIR="$(dirname "$0")"
 
 # built from ponyc release tag
 NAME="ghcr.io/ponylang/shared-docker-ci-release-a-library"
-docker build --pull --build-arg FROM_TAG=release" \
-  -t "${NAME}:$release" \
+docker build --pull --build-arg FROM_TAG="release" \
+  -t "${NAME}:release" \
   "${DOCKERFILE_DIR}"
 docker push "${NAME}:release"
 
