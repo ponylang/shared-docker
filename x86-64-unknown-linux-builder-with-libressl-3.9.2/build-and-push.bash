@@ -21,8 +21,8 @@ docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" "${DOCKERFILE_DIR}"
 docker push "${NAME}:${TAG_AS}"
 
-# built from x86-64-unknown-linux-builder latest tag
-FROM_TAG=latest
+# built from standard-linux-builder nightly tag
+FROM_TAG=nightly
 TAG_AS=latest
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" "${DOCKERFILE_DIR}"
