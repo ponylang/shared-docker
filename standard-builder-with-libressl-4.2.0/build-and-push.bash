@@ -10,9 +10,16 @@ set -o nounset
 
 ARCH=$(uname -m)
 case "${ARCH}" in
-    x86_64) ARCH_TAG="amd64" ;;
-    aarch64|arm64) ARCH_TAG="arm64" ;;
-    *) ARCH_TAG="unknown" ;;
+  x86_64)
+    ARCH_TAG="amd64"
+    ;;
+  aarch64|arm64)
+    ARCH_TAG="arm64"
+    ;;
+  *)
+    echo "Error: Unsupported architecture '${ARCH}'" >&2
+    exit 1
+    ;;
 esac
 
 DOCKERFILE_DIR="$(dirname "$0")"
