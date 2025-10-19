@@ -128,6 +128,7 @@ jobs:
       cancel-in-progress: true
 
     steps:
+      - uses: actions/checkout@v4.1.1
       - name: Login to GitHub Container Registry
         # v2.2.0
         uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
