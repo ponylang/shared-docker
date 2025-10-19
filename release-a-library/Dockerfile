@@ -1,4 +1,4 @@
-ARG FROM_TAG=release-alpine
+ARG FROM_TAG=release
 FROM ghcr.io/ponylang/changelog-tool:release AS changelog-tool
 
 FROM ghcr.io/ponylang/ponyc:${FROM_TAG}
