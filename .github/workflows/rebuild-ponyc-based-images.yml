@@ -120,7 +120,7 @@ jobs:
       - standard-builder-with-libressl_4_2_0-amd64
       - standard-builder-with-libressl_4_2_0-arm64
 
-    name: Create merged standard-builder-with-libressl_4_2_0
+    name: Create merged standard-builder-with-libressl-4.2.0
     runs-on: ubuntu-latest
 
     concurrency:
@@ -150,15 +150,15 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
-  standard-builder-with-openssl_3_6_0:
+  standard-builder-with-openssl_3_6_0-amd64:
     needs:
       - standard-builder
 
-    name: Update standard-builder-with-openssl-3.6.0
+    name: Update standard-builder-with-openssl-3.6.0 on amd64
     runs-on: ubuntu-latest
 
     concurrency:
-      group: standard-builder-with-openssl_3_6_0
+      group: standard-builder-with-openssl_3_6_0-amd64
       cancel-in-progress: true
 
     steps:
@@ -172,6 +172,75 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         run: bash standard-builder-with-openssl-3.6.0/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  standard-builder-with-openssl_3_6_0-arm64:
+    needs:
+      - standard-builder
+
+    name: Update standard-builder-with-openssl-3.6.0 on arm64
+    runs-on: ubuntu-24.04-arm
+
+    concurrency:
+      group: standard-builder-with-openssl_3_6_0-arm64
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        run: bash standard-builder-with-openssl-3.6.0/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  merge-standard-builder-with-openssl_3_6_0:
+    needs:
+      - standard-builder-with-openssl_3_6_0-amd64
+      - standard-builder-with-openssl_3_6_0-arm64
+
+    name: Create merged standard-builder-with-openssl-3.6.0
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: merge-standard-builder-with-openssl_3_6_0
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge
+        run: bash standard-builder-with-openssl-3.6.0/combine-images.bash
       - name: Send alert on failure
         if: ${{ failure() }}
         uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
@@ -358,7 +427,7 @@ jobs:
     needs:
       - standard-builder
       - merge-standard-builder-with-libressl_4_2_0
-      - standard-builder-with-openssl_3_6_0
+      - merge-standard-builder-with-openssl_3_6_0
       - x86-64-unknown-linux-builder-with-libressl_3_9_2
       - x86-64-unknown-linux-builder-with-openssl_1_1_1w
       - x86-64-unknown-linux-builder-with-openssl_3_3_2
