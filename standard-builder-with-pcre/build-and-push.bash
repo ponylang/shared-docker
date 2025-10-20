@@ -14,14 +14,14 @@ BUILDER="standard-builder-with-pcre-$(date +%s)"
 
 echo "Building nightly image from standard-builder nightly tag"
 docker buildx create --use --name "${BUILDER}"
-docker buildx build --provenance false --sbom false \
-  --platform linux/arm64,linux/amd64 --pull --push \
-  FROM_TAG="nightly" -t "${NAME}:nightly" "${DOCKERFILE_DIR}"
+docker buildx build --platform linux/arm64,linux/amd64 \
+  --provenance false --sbom false --pull --push \
+  --build-arg FROM_TAG="nightly" -t "${NAME}:nightly" "${DOCKERFILE_DIR}"
 docker buildx rm "${BUILDER}"
 
 echo "Building release image from standard-builder release tag"
 docker buildx create --use --name "${BUILDER}"
-docker buildx build --provenance false --sbom false \
-  --platform linux/arm64,linux/amd64 --pull --push \
-  FROM_TAG="release" -t "${NAME}:release" "${DOCKERFILE_DIR}"
+docker buildx build --platform linux/arm64,linux/amd64 \
+  --provenance false --sbom false --pull --push \
+  --build-arg FROM_TAG="release" -t "${NAME}:release" "${DOCKERFILE_DIR}"
 docker buildx rm "${BUILDER}"
