@@ -6,8 +6,8 @@ Comes with two tags:
 
 - release
 
-  Is built from the `ponyc:release-alpine` tag.
+  Is built from the `ponyc:release` tag.
 
-- latest
+- nightly
 
-  Is built from the `ponyc:alpine` tag
+  Is built from the `ponyc:nightly` tag
