@@ -14,14 +14,14 @@ DOCKERFILE_DIR="$(dirname "$0")"
 
 NAME="ghcr.io/ponylang/shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.2"
 
-# built from x86-64-unknown-linux-builder release tag
+# built from standard-builder release tag
 FROM_TAG=release
 TAG_AS=release
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" "${DOCKERFILE_DIR}"
 docker push "${NAME}:${TAG_AS}"
 
-# built from standard-linux-builder nightly tag
+# built from standard-builder nightly tag
 FROM_TAG=nightly
 TAG_AS=latest
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
