@@ -7,6 +7,10 @@ set -o nounset
 # *** You should already be logged in to GitHub Container Registry when you run
 #     this ***
 #
+# The tag names used here (nightly, release) must stay in sync with the
+# prune-untagged-multiplatform-images job in rebuild-ponyc-based-images.yml,
+# which inspects these tags to collect child SHAs for skip-shas protection.
+#
 
 DOCKERFILE_DIR="$(dirname "$0")"
 BUILDER="standard-builder-$(date +%s)"

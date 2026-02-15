@@ -454,6 +454,64 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
+  # prune multiplatform images
+  prune-untagged-multiplatform-images:
+    needs:
+      - send-builders-updated-event
+
+    name: Prune untagged multiplatform images
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - shared-docker-ci-standard-builder
+          - shared-docker-ci-standard-builder-with-pcre
+          - shared-docker-ci-standard-builder-with-libressl-4.2.0
+          - shared-docker-ci-standard-builder-with-openssl-3.6.0
+
+    steps:
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@5139682d94efc37792e6b54386b5b470a68a4737
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch multi-platform image SHAs to preserve
+        id: multi-arch-digests
+        run: |
+          shas=""
+          for tag in nightly release; do
+            digests=$(docker manifest inspect "ghcr.io/ponylang/${{ matrix.image }}:${tag}" 2>/dev/null | jq -r '.manifests[].digest' | paste -s -d ',' - || true)
+            if [ -n "$digests" ]; then
+              shas="${shas:+${shas},}${digests}"
+            fi
+          done
+          echo "skip-shas=${shas}" >> $GITHUB_OUTPUT
+      - name: Prune
+        # v3.0.1
+        uses: snok/container-retention-policy@3b0972b2276b171b212f8c4efbca59ebba26eceb
+        with:
+          account: ponylang
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image-names: ${{ matrix.image }}
+          tag-selection: untagged
+          cut-off: 1d
+          skip-shas: ${{ steps.multi-arch-digests.outputs.skip-shas }}
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
   # prune legacy images
   prune-untagged-builder-images:
     needs:

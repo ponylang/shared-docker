@@ -3,6 +3,9 @@
 set -o errexit
 set -o nounset
 
+# The tag names used here (nightly, release) must stay in sync with the
+# prune-untagged-multiplatform-images job in rebuild-ponyc-based-images.yml,
+# which inspects these tags to collect child SHAs for skip-shas protection.
 NAME="ghcr.io/ponylang/shared-docker-ci-standard-builder-with-openssl-3.6.0"
 
 sources=()
