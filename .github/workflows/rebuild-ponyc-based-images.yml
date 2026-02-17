@@ -411,25 +411,31 @@ jobs:
           - ponylang/appdirs
           - ponylang/changelog-tool
           - ponylang/corral
+          - ponylang/crdt
           - ponylang/fork_join
           - ponylang/github_rest_api
           - ponylang/glob
+          - ponylang/hobby
           - ponylang/http
           - ponylang/http_server
           - ponylang/json
+          - ponylang/json-ng
           - ponylang/logger
           - ponylang/lori
+          - ponylang/lori_http_server
           - ponylang/peg
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
           - ponylang/ponyup
           - ponylang/postgres
           - ponylang/reactive_streams
+          - ponylang/redis
           - ponylang/regex
           - ponylang/rfc-tool
           - ponylang/semver
           - ponylang/ssl
           - ponylang/templates
+          - ponylang/uri
           - ponylang/valbytes
           - seantallen-org/credo
           - seantallen-org/msgpack
