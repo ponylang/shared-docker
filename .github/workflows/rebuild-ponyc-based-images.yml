@@ -437,6 +437,7 @@ jobs:
           - ponylang/templates
           - ponylang/uri
           - ponylang/valbytes
+          - ponylang/web_link
           - seantallen-org/credo
           - seantallen-org/msgpack
     steps:
