@@ -422,7 +422,6 @@ jobs:
           - ponylang/json-ng
           - ponylang/logger
           - ponylang/lori
-          - ponylang/lori_http_server
           - ponylang/peg
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
@@ -435,6 +434,7 @@ jobs:
           - ponylang/semver
           - ponylang/ssl
           - ponylang/templates
+          - ponylang/stallion
           - ponylang/uri
           - ponylang/valbytes
           - ponylang/web_link
