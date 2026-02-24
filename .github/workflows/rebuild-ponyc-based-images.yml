@@ -423,7 +423,6 @@ jobs:
           - ponylang/logger
           - ponylang/lori
           - ponylang/peg
-          - ponylang/pony-lint
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
           - ponylang/ponyup
