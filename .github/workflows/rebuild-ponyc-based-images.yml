@@ -422,6 +422,7 @@ jobs:
           - ponylang/json-ng
           - ponylang/logger
           - ponylang/lori
+          - ponylang/mare
           - ponylang/peg
           - ponylang/pony-sync-helper
           - ponylang/ponydoc
@@ -438,8 +439,6 @@ jobs:
           - ponylang/uri
           - ponylang/valbytes
           - ponylang/web_link
-          - ponylang/websockets
-          - seantallen-org/credo
           - seantallen-org/msgpack
     steps:
       - name: Send
