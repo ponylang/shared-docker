@@ -425,7 +425,6 @@ jobs:
           - ponylang/mare
           - ponylang/peg
           - ponylang/pony-sync-helper
-          - ponylang/ponydoc
           - ponylang/ponyup
           - ponylang/postgres
           - ponylang/reactive_streams
