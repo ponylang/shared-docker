@@ -419,6 +419,7 @@ jobs:
           - ponylang/hobby
           - ponylang/http
           - ponylang/http_server
+          - ponylang/livery
           - ponylang/logger
           - ponylang/lori
           - ponylang/mare
