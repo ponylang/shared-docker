@@ -121,6 +121,18 @@ jobs:
       - name: Test build
         run: "docker buildx build --pull --file=standard-builder-with-openssl-3.6.0/Dockerfile ."
 
+  validate-standard-builder-with-openssl-3_6_2-builds:
+    name: Validate standard builder with openssl 3.6.2 image builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+      - name: Set up buildx
+        # v3.10.0
+        uses: docker/setup-buildx-action@v4
+      - name: Test build
+        run: "docker buildx build --pull --file=standard-builder-with-openssl-3.6.2/Dockerfile ."
+
   validate-standard-builder-with-pcre-builds:
     name: Validate standard builder with pcre image builds
     runs-on: ubuntu-latest
