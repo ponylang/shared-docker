@@ -562,39 +562,6 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
-  x86-64-unknown-linux-builder-with-openssl_3_4_1:
-    needs:
-      - standard-builder
-
-    name: Update x86-64-unknown-linux-builder-with-openssl_3.4.1
-    runs-on: ubuntu-latest
-
-    concurrency:
-      group: x86-64-unknown-linux-builder-with-openssl_3_4_1
-      cancel-in-progress: true
-
-    steps:
-      - uses: actions/checkout@v6.0.2
-      - name: Login to GitHub Container Registry
-        # v2.2.0
-        uses: docker/login-action@v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        run: bash x86-64-unknown-linux-builder-with-openssl_3.4.1/build-and-push.bash
-      - name: Send alert on failure
-        if: ${{ failure() }}
-        uses: zulip/github-actions-zulip/send-message@e4c8f27c732ba9bd98ac6be0583096dea82feea5
-        with:
-          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
-          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
-          organization-url: 'https://ponylang.zulipchat.com/'
-          to: notifications
-          type: stream
-          topic: ${{ github.repository }} scheduled job failure
-          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
 
   send-builders-updated-event:
@@ -607,7 +574,6 @@ jobs:
       - merge-standard-builder-with-openssl_3_6_2
       - x86-64-unknown-linux-builder-with-libressl_3_9_2
       - x86-64-unknown-linux-builder-with-openssl_1_1_1w
-      - x86-64-unknown-linux-builder-with-openssl_3_4_1
 
     name: Send 'shared-docker-linux-builders-updated' event
     runs-on: ubuntu-latest
@@ -744,7 +710,6 @@ jobs:
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-3.9.2
           - shared-docker-ci-x86-64-unknown-linux-builder-with-libressl-4.0.0
           - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_1.1.1w
-          - shared-docker-ci-x86-64-unknown-linux-builder-with-openssl_3.4.1
 
     steps:
       - name: Prune

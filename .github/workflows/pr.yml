@@ -65,14 +65,6 @@ jobs:
       - name: Docker build
         run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_1.1.1w/Dockerfile ."
 
-  validate-x86-64-unknown-linux-builder-with-openssl_3_4_1-image-builds:
-    name: Validate x86-64-unknown-linux-builder-with-openssl_3.4.1 Docker image builds
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6.0.2
-      - name: Docker build
-        run: "docker build --pull --file=x86-64-unknown-linux-builder-with-openssl_3.4.1/Dockerfile ."
-
   validate-standard-builder-builds:
     name: Validate standard builder image builds
     runs-on: ubuntu-latest
