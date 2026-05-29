@@ -1,4 +1,4 @@
-FROM alpine:3.20 AS builder
+FROM alpine:3.23 AS builder
 
 RUN apk add --update --no-cache \
   bash \
@@ -6,8 +6,8 @@ RUN apk add --update --no-cache \
   shellcheck
 
 RUN cd /tmp && \
-  wget https://github.com/rhysd/actionlint/releases/download/v1.7.11/actionlint_1.7.11_linux_386.tar.gz && \
-  tar xf actionlint_1.7.11_linux_386.tar.gz && \
+  wget https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_386.tar.gz && \
+  tar xf actionlint_1.7.12_linux_386.tar.gz && \
   cp actionlint /usr/bin/ && \
   chmod a+x /usr/bin/actionlint
 
@@ -15,4 +15,4 @@ FROM scratch
 
 COPY --from=builder /usr/bin/actionlint /usr/bin/actionlint
 
- ENTRYPOINT ["/usr/bin/actionlint"]
+ENTRYPOINT ["/usr/bin/actionlint"]
