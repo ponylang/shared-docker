@@ -695,8 +695,6 @@ jobs:
           - ponylang/github_rest_api
           - ponylang/glob
           - ponylang/hobby
-          - ponylang/http
-          - ponylang/http_server
           - ponylang/livery
           - ponylang/logger
           - ponylang/lori
