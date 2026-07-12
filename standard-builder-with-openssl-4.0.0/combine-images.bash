@@ -23,6 +23,11 @@ check_image() {
 
 merge_images() {
   local TAG="$1"
+  # Reset the accumulator each call: check_image appends to it, so without this
+  # the release merge reuses the nightly per-arch images collected by the
+  # nightly merge and publishes all four under the release manifest, leaving
+  # :release resolve to the nightly image on each platform.
+  sources=()
   echo "Checking available architecture images for ${NAME}:$TAG"
 
   check_image "${NAME}:${TAG}-amd64"
