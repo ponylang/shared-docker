@@ -699,6 +699,7 @@ jobs:
           - ponylang/logger
           - ponylang/lori
           - ponylang/mare
+          - ponylang/msgpack
           - ponylang/multipart_mime
           - ponylang/peg
           - ponylang/pony-sync-helper
@@ -715,7 +716,6 @@ jobs:
           - ponylang/uri
           - ponylang/valbytes
           - ponylang/web_link
-          - seantallen-org/msgpack
     steps:
       - name: Send
         # v2.1.1
