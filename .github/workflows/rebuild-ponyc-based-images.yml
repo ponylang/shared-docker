@@ -708,7 +708,6 @@ jobs:
           - ponylang/reactive_streams
           - ponylang/redis
           - ponylang/regex
-          - ponylang/rfc-tool
           - ponylang/semver
           - ponylang/ssl
           - ponylang/templates
