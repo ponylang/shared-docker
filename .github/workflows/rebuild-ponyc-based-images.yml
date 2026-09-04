@@ -48,6 +48,9 @@ jobs:
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
   standard-builder-with-pcre:
+    needs:
+      - standard-builder
+
     name: Update standard builder with pcre
     runs-on: ubuntu-latest
 
