@@ -23,7 +23,7 @@ docker push "${NAME}:${TAG_AS}"
 
 # built from standard-builder nightly tag
 FROM_TAG=nightly
-TAG_AS=latest
+TAG_AS=nightly
 docker build --pull --build-arg FROM_TAG="${FROM_TAG}" \
   -t "${NAME}:${TAG_AS}" "${DOCKERFILE_DIR}"
 docker push "${NAME}:${TAG_AS}"
