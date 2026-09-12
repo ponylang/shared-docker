@@ -700,7 +700,6 @@ jobs:
           - ponylang/hobby
           - ponylang/livery
           - ponylang/logger
-          - ponylang/lori
           - ponylang/mare
           - ponylang/msgpack
           - ponylang/multipart_mime
