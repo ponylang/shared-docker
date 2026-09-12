@@ -692,7 +692,6 @@ jobs:
           - ponylang/appdirs
           - ponylang/changelog-tool
           - ponylang/corral
-          - ponylang/courier
           - ponylang/crdt
           - ponylang/fork_join
           - ponylang/github_rest_api
@@ -714,7 +713,6 @@ jobs:
           - ponylang/ssl
           - ponylang/templates
           - ponylang/stallion
-          - ponylang/uri
           - ponylang/valbytes
           - ponylang/web_link
     steps:
