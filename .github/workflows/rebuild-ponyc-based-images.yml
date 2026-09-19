@@ -710,7 +710,6 @@ jobs:
           - ponylang/redis
           - ponylang/regex
           - ponylang/semver
-          - ponylang/ssl
           - ponylang/templates
           - ponylang/stallion
           - ponylang/valbytes
