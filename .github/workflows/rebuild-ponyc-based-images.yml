@@ -691,6 +691,7 @@ jobs:
           - ergl/pony-protobuf
           - ponylang/appdirs
           - ponylang/changelog-tool
+          - ponylang/cloudsmith-uploader
           - ponylang/corral
           - ponylang/crdt
           - ponylang/fork_join
