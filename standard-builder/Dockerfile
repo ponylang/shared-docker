@@ -15,7 +15,7 @@ RUN apk add --update --no-cache \
   && pip install --break-system-packages cloudsmith-cli
 
 ARG TARGETARCH
-RUN UPLOADER_VERSION="0.1.0" \
+RUN UPLOADER_VERSION="0.2.0" \
   && if [ "$TARGETARCH" = "arm64" ]; then \
        UPLOADER_ARCH="arm64"; \
      else \
