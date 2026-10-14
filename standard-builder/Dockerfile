@@ -15,13 +15,12 @@ RUN apk add --update --no-cache \
   && pip install --break-system-packages cloudsmith-cli
 
 ARG TARGETARCH
-RUN UPLOADER_VERSION="0.2.0" \
-  && if [ "$TARGETARCH" = "arm64" ]; then \
+RUN if [ "$TARGETARCH" = "arm64" ]; then \
        UPLOADER_ARCH="arm64"; \
      else \
        UPLOADER_ARCH="x86-64"; \
      fi \
-  && curl -fsSL "https://github.com/ponylang/cloudsmith-uploader/releases/download/${UPLOADER_VERSION}/cloudsmith-uploader-${UPLOADER_ARCH}-unknown-linux.tar.gz" \
+  && curl -fsSL "https://github.com/ponylang/cloudsmith-uploader/releases/latest/download/cloudsmith-uploader-${UPLOADER_ARCH}-unknown-linux.tar.gz" \
      | tar -xz -C /usr/local --strip-components=1
 
 RUN git config --global --add safe.directory '*'
