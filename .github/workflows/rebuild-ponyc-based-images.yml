@@ -188,11 +188,115 @@ jobs:
           topic: ${{ github.repository }} scheduled job failure
           content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
 
+  standard-builder-with-libressl_4_3_3-amd64:
+    needs:
+      - standard-builder
+
+    name: Update standard-builder-with-libressl-4.3.3 on amd64
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: standard-builder-with-libressl_4_3_3-amd64
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        run: bash standard-builder-with-libressl-4.3.3/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@bd8ec52de371d139ae8313661b7d8318c19266aa
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  standard-builder-with-libressl_4_3_3-arm64:
+    needs:
+      - standard-builder
+
+    name: Update standard-builder-with-libressl-4.3.3 on arm64
+    runs-on: ubuntu-24.04-arm
+
+    concurrency:
+      group: standard-builder-with-libressl_4_3_3-arm64
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        run: bash standard-builder-with-libressl-4.3.3/build-and-push.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@bd8ec52de371d139ae8313661b7d8318c19266aa
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
+  merge-standard-builder-with-libressl_4_3_3:
+    needs:
+      - standard-builder-with-libressl_4_3_3-amd64
+      - standard-builder-with-libressl_4_3_3-arm64
+
+    name: Create merged standard-builder-with-libressl-4.3.3
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: merge-standard-builder-with-libressl_4_3_3
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Login to GitHub Container Registry
+        # v2.2.0
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge
+        run: bash standard-builder-with-libressl-4.3.3/combine-images.bash
+      - name: Send alert on failure
+        if: ${{ failure() }}
+        uses: zulip/github-actions-zulip/send-message@bd8ec52de371d139ae8313661b7d8318c19266aa
+        with:
+          api-key: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_API_KEY }}
+          email: ${{ secrets.ZULIP_SCHEDULED_JOB_FAILURE_EMAIL }}
+          organization-url: 'https://ponylang.zulipchat.com/'
+          to: notifications
+          type: stream
+          topic: ${{ github.repository }} scheduled job failure
+          content: ${{ github.server_url}}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed.
+
   send-builders-updated-event:
     needs:
       - standard-builder
       - standard-builder-with-pcre
       - merge-standard-builder-with-libressl_4_2_1
+      - merge-standard-builder-with-libressl_4_3_3
 
     name: Send 'shared-docker-linux-builders-updated' event
     runs-on: ubuntu-latest
@@ -263,6 +367,7 @@ jobs:
           - shared-docker-ci-standard-builder
           - shared-docker-ci-standard-builder-with-pcre
           - shared-docker-ci-standard-builder-with-libressl-4.2.1
+          - shared-docker-ci-standard-builder-with-libressl-4.3.3
 
     steps:
       - name: Login to GitHub Container Registry
