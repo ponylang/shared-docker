@@ -64,7 +64,7 @@ Each add gets its own PR.
 7. Edit `.github/workflows/pr.yml` — add a `validate-standard-builder-with-<library>-<version>-builds` job following the existing `validate-standard-builder-with-libressl-4_2_1-builds` pattern. This is what proves "it builds" at PR time; `rebuild-ponyc-based-images.yml` won't fire until the next ponyc nightly/release event. Use underscores for version separators in the job key; the name and file path use dots.
 8. Commit, push, open PR. Commit message explains which builder is being added and why (new upstream release).
 9. Wait for CI to pass — especially the new `validate-...-builds` job, which is the actual build verification. Squash-merge. The builder's first real tagged image on ghcr.io is published when the next ponyc nightly or release triggers `rebuild-ponyc-based-images.yml`.
-10. Post the "Last Week in Pony" note to the current week's LWIP issue as soon as this PR merges — don't batch notes until the whole cycle is done. Announce the new builder, note which prior-version builder will be removed next cycle, and tell users they should migrate before that happens. If unsure where the current LWIP issue lives, ask the user.
+10. Post the "Last Week in Pony" note to the current week's LWIP issue as soon as this PR merges — don't batch notes until the whole cycle is done. Announce the new builder, note which prior-version builder will be removed next cycle, and tell users they should migrate before that happens. Find the current LWIP issue by searching: https://github.com/ponylang/ponylang-website/issues?q=is%3Aissue+state%3Aopen+label%3Alast-week-in-pony
 
 Example phrasing:
 > A new LibreSSL 4.2.1 builder image is now available. The prior LibreSSL 4.2.0 image will be removed during the next SSL builder update, so any project still using 4.2.0 should plan to migrate.
@@ -82,7 +82,7 @@ Each drop gets its own PR.
 4. Edit `.github/workflows/pr.yml` — remove the corresponding `validate-<builder>-builds` job.
 5. Commit, push, open PR.
 6. Wait for CI to pass. Squash-merge.
-7. Post the "Last Week in Pony" note to the current week's LWIP issue as soon as this PR merges — don't batch notes until the whole cycle is done. Note the builder is gone and will receive no further updates (builders only get rebuilt when a new ponyc nightly or release image triggers `rebuild-ponyc-based-images.yml`). If unsure where the current LWIP issue lives, ask the user.
+7. Post the "Last Week in Pony" note to the current week's LWIP issue as soon as this PR merges — don't batch notes until the whole cycle is done. Note the builder is gone and will receive no further updates (builders only get rebuilt when a new ponyc nightly or release image triggers `rebuild-ponyc-based-images.yml`). Find the current LWIP issue by searching: https://github.com/ponylang/ponylang-website/issues?q=is%3Aissue+state%3Aopen+label%3Alast-week-in-pony
 
 Example phrasing:
 > The LibreSSL 4.2.0 builder image has been removed and will receive no further updates. Any projects still using it should switch to a current builder.
